@@ -11,3 +11,17 @@ SELECT
     COUNT(*) AS total_rows,
     COUNT(DISTINCT customerID) AS unique_customers
 FROM telco_customers;
+
+-- Check churn distribution
+SELECT
+    Churn,
+    COUNT(*) AS customer_count
+FROM telco_customers
+GROUP BY Churn;
+
+-- Check missing or blank TotalCharges
+SELECT
+    COUNT(*) AS blank_total_charges
+FROM telco_customers
+WHERE TotalCharges IS NULL
+   OR TRIM(TotalCharges) = '';
